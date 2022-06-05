@@ -54,9 +54,7 @@ export default function TodoApp() {
         value: "",
     });
     const updateTodo = (todoId, newValue) => {
-        if (!newValue.task || /^\s*$/.test(newValue.task)) {
-            return
-        }
+
         setTodos(prev => prev.map(item => (item.id === todoId ? newValue : item)));
         setEdit({
             id: null,
@@ -65,8 +63,13 @@ export default function TodoApp() {
     };
     const handleSubmit = (event) => {
         event.preventDefault();
-        const input = event.target.previousSibling;
-        console.log(input.value);
+        // console.log(event.target)
+        // const input = event.target.previousSibling;
+        const input = document.querySelector("#TodoInput");
+        console.log(input)
+        if ((input.value).length < 3 || (input.value).length > 30 ||  /^\s*$/.test(input.value)) {
+            return
+        }
         if (!edit.id) {
             addTodo({
                 task: input.value,
@@ -111,13 +114,15 @@ export default function TodoApp() {
         <Box sx={{
             display: "flex",
             flexDirection: "column",
-            width: "30%",
+            width: {xs: "100%", sm: "60%", md: "50%", lg: "40%", xl: "30%"},
             justifyContent: "start",
             alignItems: "center",
-            p: "3rem",
-            borderRadius:1,
+            p: {xs:"0.5rem", sm:"3rem"},
+            borderRadius: 1,
             gap: "2rem",
             background: "#161a2b",
+            boxSizing: "border-box",
+            height:"auto"
         }}>
             <TodoHeader/>
 

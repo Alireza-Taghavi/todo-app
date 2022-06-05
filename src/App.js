@@ -11,7 +11,7 @@ const darkTheme = createTheme({
 function App() {
     return (
         <ThemeProvider theme={darkTheme}>
-            <Box sx={{display: "flex", justifyContent: "center", marginTop: "5rem",}}>
+            <Box sx={{display: "flex", justifyContent: "center", marginTop: {sm:"5rem", xs:"0"}}}>
                 < TodoApp />
             < /Box>
         </ThemeProvider>
